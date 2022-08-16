@@ -1,0 +1,86 @@
+//3) Write a program that creates employees(id, name, age, addresses(list), hobbies(list)) as per user request and prints properly formatted information. For example if user says 5 employees, it creates 5 employees. You can take inputs from user or generate random programmatically. 
+//4) Modify above program to accept number and operation(addition/subtraction) from user.  If user says 2 and addition, 2 more employees should get added to list and print in end. Same way if user says 2 and subtraction 2 employees should get removed and result should printed.
+
+
+use std::io;
+
+#[derive(Debug)]
+struct Employee {
+   id:u32,
+   name:String,
+   age:u32,
+}
+
+fn main()
+{
+    println!("Enter the number of employee ");
+    let mut emp_n = String::new();
+    io::stdin().read_line(&mut emp_n).expect("failed to read input");
+    let emp_num : u32 = emp_n.trim().parse().unwrap();
+   
+    let mut vec = vec![];
+    for i in 0..emp_num
+    {
+         println!("Enter employee id :- ");
+         let mut emp_id_str = String::new();
+         io::stdin().read_line(&mut emp_id_str).expect("Not able to read data");
+         let mut emp_id = emp_id_str.trim().parse().unwrap();
+         
+         println!("Enter employee name :- ");
+         let mut emp_name = String::new();
+         io::stdin().read_line(&mut emp_name).expect("Not able to read data");
+         
+         println!("Enter employee age :- ");
+         let mut emp_age_str = String::new();
+         io::stdin().read_line(&mut emp_age_str).expect("Not able to read data");
+         let mut emp_age = emp_age_str.trim().parse().unwrap();
+         
+         let employee = Employee{
+             id : emp_id,
+             name : emp_name,
+             age : emp_age,
+         };
+         
+         println!("Press 1 to add employee & Press 2 to remove employee :- ");
+        let mut ch = String::new();
+        io::stdin().read_line(&mut ch).expect("Not able to read data");
+        let mut choice:u32 = ch.trim().parse().unwrap();
+    
+        // println!("{:?}",choice);
+    
+        match choice {
+        1=>(add(&mut vec , employee)),
+        2=>(sub(&mut vec , employee)),
+    _   =>println!("Rest of the number"),
+      }
+   }
+}
+
+fn add(v:&mut Vec<Employee>,emp1:Employee){
+    v.push(emp1);
+    println!("{:?}" , v);
+}
+
+fn sub(v:&mut Vec<Employee>,emp1:Employee){
+
+    if v.len() == 0
+    {
+        println!("Your list is empty");
+    } 
+    else
+    {
+        v.push(emp1);
+    
+        println!("Enter the id of employee you want to remove from the list -");
+        let mut emp_id_str_rmv = String::new();
+         io::stdin().read_line(&mut emp_id_str_rmv).expect("Not able to read data");
+        let mut emp_id_rmv = emp_id_str_rmv.trim().parse().unwrap();
+    
+        v.remove(emp_id_rmv);
+    
+         println!("{:?}" , v);
+    }
+}
+
+
+

@@ -1,0 +1,67 @@
+//3) Write a program that creates employees(id, name, age, addresses(list), hobbies(list)) as per user request and prints properly formatted information. For example if user says 5 employees, it creates 5 employees. You can take inputs from user or generate random programmatically. 
+
+use std::io;
+
+#[derive(Debug)]
+struct Employee {
+   id:u32,
+   name:String,
+   age:u32,
+   address:Vec<String>,
+   hobbies:Vec<String>,
+}
+
+fn main() {
+    println!("Enter number of employee to create :- ");
+    let mut emp_num = String::new();
+    io::stdin().read_line(&mut emp_num).expect("Not able to read data");
+    
+    let mut emp_n = emp_num.trim().parse().unwrap();
+    
+    let mut emp = Vec::<Employee>::new();
+    
+    for i in 0..emp_n
+    {
+         println!("Enter employee id :- ");
+         let mut emp_id_str = String::new();
+         io::stdin().read_line(&mut emp_id_str).expect("Not able to read data");
+         let mut emp_id = emp_id_str.trim().parse().unwrap();
+         
+         println!("Enter employee name :- ");
+         let mut emp_name = String::new();
+         io::stdin().read_line(&mut emp_name).expect("Not able to read data");
+         
+         println!("Enter employee age :- ");
+         let mut emp_age_str = String::new();
+         io::stdin().read_line(&mut emp_age_str).expect("Not able to read data");
+         let mut emp_age = emp_age_str.trim().parse().unwrap();
+         
+         let mut emp_hobbies = Vec::<String>::new();
+         emp_hobbies.push("Painting".to_string());
+         emp_hobbies.push("Reading".to_string());
+         
+         let mut emp_address = Vec::<String>::new();
+         emp_address.push("Pune".to_string());
+         emp_address.push("Nashik".to_string());
+         
+         let employee = Employee{
+             id : emp_id,
+             name : emp_name,
+             age : emp_age,
+             address : emp_address,
+             hobbies : emp_hobbies,
+         };
+         
+         emp.push(employee);
+    }
+    
+    for i in &emp{
+        println!("Id: {:?} , Name: {:?} , Age: {:?} , Address: {:?} ,Hobbies: {:?} " 
+        , i.id , i.name , i.age , i.address ,i.hobbies);
+    }
+}
+
+
+
+
+

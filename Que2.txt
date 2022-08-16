@@ -1,0 +1,49 @@
+//1)Write program that accepts 2 numbers and choice of operation(addition, subtraction, multiplication, division) from user and performs the operation and prints the result
+//2) Modify above program to write functions for each operations 
+
+
+use std::io;
+
+fn main() {
+
+ println!("Enter 1st number :: ");
+ let mut op1 = String::new();
+ io::stdin().read_line(&mut op1).expect("failed to read input");
+ 
+ println!("Enter 2nd number :: ");
+ let mut op2 = String::new();
+ io::stdin().read_line(&mut op2).expect("failed to read input");
+ 
+ println!("Enter choice number :: ");
+ let mut c1 = String::new();
+ io::stdin().read_line(&mut c1).expect("failed to read input");
+ 
+ let a : i32 = op1.trim().parse().expect("invalid input");
+ let b : i32 = op2.trim().parse().expect("invalid input");
+ let choice : i32 = c1.trim().parse().expect("invalid input");
+ 
+ //let num=3;
+   match choice {
+     1=>add(a,b) ,
+     2=>sub(a,b),
+     3=>mul(a,b),
+     4=>division(a,b),
+    _=>println!("Rest of the number"),
+   }
+}
+
+fn add(x:i32 , y:i32){
+    println!("Addition is :: {}" , x+y);
+}
+fn sub(x:i32 , y:i32){
+    println!("Substraction is :: {}" , x-y);
+}
+fn mul(x:i32 , y:i32){
+    println!("Multiplication is :: {}" , x*y);
+}
+fn division(x:i32 , y:i32){
+    println!("Division is :: {}" , x/y);
+}
+
+
+
